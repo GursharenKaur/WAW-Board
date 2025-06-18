@@ -1,11 +1,14 @@
 .request-form-page {
+  min-height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(120deg, #e3f2fd 60%, #fff 100%);
-  min-height: 100vh;
-  padding: 2.5rem 0;
+  justify-content: center;
+  background: transparent; /* Let the global gradient show */
 }
+
+
 
 .request-title {
   color: #1976d2;
@@ -15,17 +18,14 @@
   letter-spacing: 1px;
 }
 
-.request-form {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(25, 118, 210, 0.13);
-  padding: 2.5rem 2.5rem 2rem 2.5rem;
-  width: 100%;
-  max-width: 420px;
+.request-form-page {
+  min-height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  gap: 1.3rem;
-  position: relative;
+  align-items: center;
+  justify-content: center;
+  background: transparent; /* Let global gradient show through */
 }
 
 .form-row {
