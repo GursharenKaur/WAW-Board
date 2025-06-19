@@ -1,4 +1,6 @@
-/* src/pages/RequestFormPage.css */
+body {
+  overflow-y: hidden;
+}
 
 .request-form-page {
   min-height: 100vh;
@@ -8,6 +10,7 @@
   align-items: center;
   justify-content: center;
   background: transparent; /* Let the global gradient show */
+  overflow: hidden; /* <--- Prevents accidental inner scroll */
 }
 
 .request-title {
@@ -22,9 +25,9 @@
 .request-form {
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(25, 118, 210, 0.13);
+  box-shadow: 0 4px 24px #1976d221;
   padding: 2.5rem 2.5rem 2rem 2.5rem;
-  width: 100%;
+  max-width: 100%;
   max-width: 420px;
   display: flex;
   flex-direction: column;

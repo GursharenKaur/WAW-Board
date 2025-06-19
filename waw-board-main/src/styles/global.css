@@ -43,5 +43,6 @@ html, body, #root {
   width: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden; /* <--- Prevents scrollbars if content fits */
   background: linear-gradient(120deg, #e3f2fd 60%, #b2dfdb 100%);
 }
