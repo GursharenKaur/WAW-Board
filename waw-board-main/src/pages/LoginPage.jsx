@@ -12,29 +12,50 @@ const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  const isValidEmail = (email) => {
+    // Simple regex for email validation
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const isValidPassword = (password) => {
+    // Minimum 7 characters
+    return password.length >= 7;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
+
     if (!role) {
       setError('Please select your role');
       return;
     }
-    if (userId && password) {
-      const userData = {
-        id: userId,
-        role: role,
-        name: "John Doe"
-      };
-      login(userData);
-      if (role === 'student') {
-        navigate('/student/dashboard');
-      } else {
-        navigate('/professor/dashboard');
-      }
-    } else {
+    if (!userId || !password) {
       setError('Please fill in all fields');
+      return;
+    }
+    if (!isValidEmail(userId)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+    if (!isValidPassword(password)) {
+      setError('Password must be at least 7 characters');
+      return;
+    }
+
+    const userData = {
+      id: userId,
+      role: role,
+      name: "John Doe"
+    };
+    login(userData);
+    if (role === 'student') {
+      navigate('/student/dashboard');
+    } else {
+      navigate('/professor/dashboard');
     }
   };
+
 
   return (
     <div className="login-container">
