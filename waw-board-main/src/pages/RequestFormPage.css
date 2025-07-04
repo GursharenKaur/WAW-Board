@@ -27,11 +27,11 @@
   border-radius: 16px;
   box-shadow: 0 4px 24px #1976d221;
   padding: 2.5rem 2.5rem 2rem 2.5rem;
-  max-width: 420px;
+  max-width: 500px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.3rem;
+  gap: 1rem;
   position: relative;
 }
 
@@ -66,7 +66,7 @@
 /* Row for date and time pickers */
 .form-row {
   display: flex;
-  gap: 1.2rem;
+  gap: 1.5rem;
   justify-content: space-between;
 }
 
@@ -176,7 +176,7 @@
 
 .side-by-side-row {
   display: flex;
-  gap: 1.2rem;
+  gap: 1.5rem;
   margin-bottom: 1.2rem;
 }
 
@@ -217,4 +217,23 @@
     flex-direction: column;
     gap: 0.7rem;
   }
+}
+
+/* Ensure equal padding inside all form inputs */
+.request-form input,
+.request-form textarea,
+.custom-datepicker,
+.custom-timepicker,
+.custom-dropdown {
+  box-sizing: border-box;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Ensure side-by-side input boxes don't look squeezed */
+.side-field:first-child {
+  padding-right: 0.5rem;
+}
+.side-field:last-child {
+  padding-left: 0.5rem;
 }
