@@ -1,7 +1,5 @@
-body {
-  overflow-y: hidden;
-}
 
+/* Main page container */
 .request-form-page {
   min-height: 100vh;
   width: 100vw;
@@ -10,9 +8,10 @@ body {
   align-items: center;
   justify-content: center;
   background: transparent; /* Let the global gradient show */
-  overflow: hidden; /* <--- Prevents accidental inner scroll */
+  overflow: hidden; /* Prevent accidental inner scroll */
 }
 
+/* Page title */
 .request-title {
   color: #1976d2;
   font-size: 2rem;
@@ -22,23 +21,26 @@ body {
   letter-spacing: 1px;
 }
 
+/* Form card */
 .request-form {
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 4px 24px #1976d221;
   padding: 2.5rem 2.5rem 2rem 2.5rem;
-  max-width: 100%;
   max-width: 420px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.3rem;
   position: relative;
 }
 
+/* Inputs, textarea, datepicker, timepicker, dropdowns */
 .request-form input,
 .request-form textarea,
 .custom-datepicker,
-.custom-timepicker {
+.custom-timepicker,
+.custom-dropdown {
   background: #f5f5f5;
   color: #212121;
   border: 1.5px solid #bdbdbd;
@@ -50,21 +52,25 @@ body {
   margin-top: 0.2rem;
 }
 
+/* Focus styles */
 .request-form input:focus,
 .request-form textarea:focus,
 .custom-datepicker:focus,
-.custom-timepicker:focus {
+.custom-timepicker:focus,
+.custom-dropdown:focus {
   border: 1.5px solid #1976d2;
   outline: none;
   background: #fff;
 }
 
+/* Row for date and time pickers */
 .form-row {
   display: flex;
   gap: 1.2rem;
   justify-content: space-between;
 }
 
+/* Date and time picker wrappers */
 .date-picker-wrapper,
 .time-picker-wrapper {
   display: flex;
@@ -80,6 +86,21 @@ body {
   margin-bottom: 0.2rem;
 }
 
+/* Dropdown wrappers for reason and year */
+.dropdown-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.dropdown-wrapper label {
+  color: #1976d2;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+/* Form actions (buttons) */
 .form-actions {
   display: flex;
   gap: 1rem;
@@ -87,6 +108,7 @@ body {
   margin-top: 0.5rem;
 }
 
+/* Submit button */
 .submit-btn {
   background: #388e3c;
   color: #fff;
@@ -103,6 +125,7 @@ body {
   background: #2e7031;
 }
 
+/* Cancel button */
 .cancel-btn {
   background: #fff;
   color: #1976d2;
@@ -119,6 +142,7 @@ body {
   background: #e3f2fd;
 }
 
+/* Toast for confirmation */
 .confirmation-toast {
   position: absolute;
   bottom: -2.5rem;
@@ -138,6 +162,7 @@ body {
   to { opacity: 1; transform: translateX(-50%) translateY(0);}
 }
 
+/* Responsive styles */
 @media (max-width: 600px) {
   .request-form {
     padding: 1rem;
