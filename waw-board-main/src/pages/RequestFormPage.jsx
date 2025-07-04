@@ -10,11 +10,28 @@ const timeSlots = [
   "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM"
 ];
 
+const reasonOptions = [
+  "Lecture doubt",
+  "Capstone related",
+  "Project related",
+  "Exam query",
+  "Other"
+];
+
+const yearOptions = [
+  "1st",
+  "2nd",
+  "3rd",
+  "4th"
+];
+
 const RequestFormPage = () => {
   const [subject, setSubject] = useState('');
   const [comments, setComments] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState('');
+  const [reason, setReason] = useState('');
+  const [year, setYear] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
@@ -26,6 +43,8 @@ const RequestFormPage = () => {
     setComments('');
     setSelectedDate(null);
     setSelectedTime('');
+    setReason('');
+    setYear('');
   };
 
   return (
@@ -75,6 +94,38 @@ const RequestFormPage = () => {
             </select>
           </div>
         </div>
+        {/* Reason of Meet Dropdown */}
+        <div className="dropdown-wrapper">
+          <label htmlFor="reason">Reason of Meet</label>
+          <select
+            id="reason"
+            value={reason}
+            onChange={e => setReason(e.target.value)}
+            required
+            className="custom-dropdown"
+          >
+            <option value="">Select reason</option>
+            {reasonOptions.map(option => (
+              <option key={option} value={option}>{option}</option>
+            ))}
+          </select>
+        </div>
+        {/* Year of Study Dropdown */}
+        <div className="dropdown-wrapper">
+          <label htmlFor="year">Year of Study</label>
+          <select
+            id="year"
+            value={year}
+            onChange={e => setYear(e.target.value)}
+            required
+            className="custom-dropdown"
+          >
+            <option value="">Select year</option>
+            {yearOptions.map(option => (
+              <option key={option} value={option}>{option}</option>
+            ))}
+          </select>
+        </div>
         <div className="form-actions">
           <button type="submit" className="submit-btn">Submit</button>
           <button type="button" className="cancel-btn" onClick={() => {
@@ -82,6 +133,8 @@ const RequestFormPage = () => {
             setComments('');
             setSelectedDate(null);
             setSelectedTime('');
+            setReason('');
+            setYear('');
           }}>Cancel</button>
         </div>
         {submitted && (
