@@ -9,29 +9,16 @@ const timeSlots = [
   "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM",
   "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM"
 ];
-
 const reasonOptions = [
-  "Lecture doubt",
-  "Capstone related",
-  "Project related",
-  "Exam query",
-  "Other"
+  "Lecture doubt", "Capstone related", "Project related", "Exam query", "Other"
 ];
-
-const yearOptions = [
-  "1st",
-  "2nd",
-  "3rd",
-  "4th"
-];
+const yearOptions = ["1st", "2nd", "3rd", "4th"];
 
 const RequestFormPage = () => {
-  // New state for toggles
-  const [profFieldType, setProfFieldType] = useState('name'); // 'name' or 'code'
+  const [profFieldType, setProfFieldType] = useState('name');
   const [profValue, setProfValue] = useState('');
-  const [subjectFieldType, setSubjectFieldType] = useState('name'); // 'name' or 'code'
+  const [subjectFieldType, setSubjectFieldType] = useState('name');
   const [subjectValue, setSubjectValue] = useState('');
-
   const [comments, setComments] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState('');
@@ -41,7 +28,6 @@ const RequestFormPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here, you would send the form data to your backend or context
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 2500);
     setProfValue('');
@@ -59,93 +45,74 @@ const RequestFormPage = () => {
     <div className="request-form-page">
       <h1 className="request-title">Book a Meeting</h1>
       <form className="request-form" onSubmit={handleSubmit}>
-
-        {/* Professor Name or Code */}
-        <div className="toggle-input-wrapper">
-          <label>Professor:</label>
-          <div className="toggle-row">
-            <label>
-              <input
-                type="radio"
-                name="profFieldType"
-                value="name"
-                checked={profFieldType === 'name'}
-                onChange={() => setProfFieldType('name')}
-              />
-              Name
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="profFieldType"
-                value="code"
-                checked={profFieldType === 'code'}
-                onChange={() => setProfFieldType('code')}
-              />
-              Code
-            </label>
-          </div>
-          {profFieldType === 'name' ? (
+        {/* SIDE-BY-SIDE PROFESSOR AND SUBJECT */}
+        <div className="side-by-side-row">
+          {/* Professor Field */}
+          <div className="side-field">
+            <label>Professor:</label>
             <input
               type="text"
-              placeholder="Enter Professor Name"
+              placeholder={profFieldType === 'name' ? "Enter Professor Name" : "Enter Professor Code"}
               value={profValue}
               onChange={e => setProfValue(e.target.value)}
               required
             />
-          ) : (
-            <input
-              type="text"
-              placeholder="Enter Professor Code"
-              value={profValue}
-              onChange={e => setProfValue(e.target.value)}
-              required
-            />
-          )}
-        </div>
-
-        {/* Subject Name or Code */}
-        <div className="toggle-input-wrapper">
-          <label>Subject:</label>
-          <div className="toggle-row">
-            <label>
-              <input
-                type="radio"
-                name="subjectFieldType"
-                value="name"
-                checked={subjectFieldType === 'name'}
-                onChange={() => setSubjectFieldType('name')}
-              />
-              Name
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="subjectFieldType"
-                value="code"
-                checked={subjectFieldType === 'code'}
-                onChange={() => setSubjectFieldType('code')}
-              />
-              Code
-            </label>
+            <div className="toggle-row">
+              <label>
+                <input
+                  type="radio"
+                  name="profFieldType"
+                  value="name"
+                  checked={profFieldType === 'name'}
+                  onChange={() => setProfFieldType('name')}
+                />
+                Name
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="profFieldType"
+                  value="code"
+                  checked={profFieldType === 'code'}
+                  onChange={() => setProfFieldType('code')}
+                />
+                Code
+              </label>
+            </div>
           </div>
-          {subjectFieldType === 'name' ? (
+          {/* Subject Field */}
+          <div className="side-field">
+            <label>Subject:</label>
             <input
               type="text"
-              placeholder="Enter Subject Name"
+              placeholder={subjectFieldType === 'name' ? "Enter Subject Name" : "Enter Subject Code"}
               value={subjectValue}
               onChange={e => setSubjectValue(e.target.value)}
               required
             />
-          ) : (
-            <input
-              type="text"
-              placeholder="Enter Subject Code"
-              value={subjectValue}
-              onChange={e => setSubjectValue(e.target.value)}
-              required
-            />
-          )}
+            <div className="toggle-row">
+              <label>
+                <input
+                  type="radio"
+                  name="subjectFieldType"
+                  value="name"
+                  checked={subjectFieldType === 'name'}
+                  onChange={() => setSubjectFieldType('name')}
+                />
+                Name
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="subjectFieldType"
+                  value="code"
+                  checked={subjectFieldType === 'code'}
+                  onChange={() => setSubjectFieldType('code')}
+                />
+                Code
+              </label>
+            </div>
+          </div>
         </div>
 
         <textarea
@@ -185,8 +152,6 @@ const RequestFormPage = () => {
             </select>
           </div>
         </div>
-
-        {/* Reason of Meet Dropdown */}
         <div className="dropdown-wrapper">
           <label htmlFor="reason">Reason of Meet</label>
           <select
@@ -202,7 +167,6 @@ const RequestFormPage = () => {
             ))}
           </select>
         </div>
-        {/* Year of Study Dropdown */}
         <div className="dropdown-wrapper">
           <label htmlFor="year">Year of Study</label>
           <select
