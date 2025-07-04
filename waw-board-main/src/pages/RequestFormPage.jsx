@@ -26,7 +26,12 @@ const yearOptions = [
 ];
 
 const RequestFormPage = () => {
-  const [subject, setSubject] = useState('');
+  // New state for toggles
+  const [profFieldType, setProfFieldType] = useState('name'); // 'name' or 'code'
+  const [profValue, setProfValue] = useState('');
+  const [subjectFieldType, setSubjectFieldType] = useState('name'); // 'name' or 'code'
+  const [subjectValue, setSubjectValue] = useState('');
+
   const [comments, setComments] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState('');
@@ -39,31 +44,117 @@ const RequestFormPage = () => {
     // Here, you would send the form data to your backend or context
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 2500);
-    setSubject('');
+    setProfValue('');
+    setSubjectValue('');
     setComments('');
     setSelectedDate(null);
     setSelectedTime('');
     setReason('');
     setYear('');
+    setProfFieldType('name');
+    setSubjectFieldType('name');
   };
 
   return (
     <div className="request-form-page">
       <h1 className="request-title">Book a Meeting</h1>
       <form className="request-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Subject"
-          value={subject}
-          onChange={e => setSubject(e.target.value)}
-          required
-        />
+
+        {/* Professor Name or Code */}
+        <div className="toggle-input-wrapper">
+          <label>Professor:</label>
+          <div className="toggle-row">
+            <label>
+              <input
+                type="radio"
+                name="profFieldType"
+                value="name"
+                checked={profFieldType === 'name'}
+                onChange={() => setProfFieldType('name')}
+              />
+              Name
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="profFieldType"
+                value="code"
+                checked={profFieldType === 'code'}
+                onChange={() => setProfFieldType('code')}
+              />
+              Code
+            </label>
+          </div>
+          {profFieldType === 'name' ? (
+            <input
+              type="text"
+              placeholder="Enter Professor Name"
+              value={profValue}
+              onChange={e => setProfValue(e.target.value)}
+              required
+            />
+          ) : (
+            <input
+              type="text"
+              placeholder="Enter Professor Code"
+              value={profValue}
+              onChange={e => setProfValue(e.target.value)}
+              required
+            />
+          )}
+        </div>
+
+        {/* Subject Name or Code */}
+        <div className="toggle-input-wrapper">
+          <label>Subject:</label>
+          <div className="toggle-row">
+            <label>
+              <input
+                type="radio"
+                name="subjectFieldType"
+                value="name"
+                checked={subjectFieldType === 'name'}
+                onChange={() => setSubjectFieldType('name')}
+              />
+              Name
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="subjectFieldType"
+                value="code"
+                checked={subjectFieldType === 'code'}
+                onChange={() => setSubjectFieldType('code')}
+              />
+              Code
+            </label>
+          </div>
+          {subjectFieldType === 'name' ? (
+            <input
+              type="text"
+              placeholder="Enter Subject Name"
+              value={subjectValue}
+              onChange={e => setSubjectValue(e.target.value)}
+              required
+            />
+          ) : (
+            <input
+              type="text"
+              placeholder="Enter Subject Code"
+              value={subjectValue}
+              onChange={e => setSubjectValue(e.target.value)}
+              required
+            />
+          )}
+        </div>
+
         <textarea
           placeholder="Extra comments (optional)"
           rows={3}
           value={comments}
           onChange={e => setComments(e.target.value)}
         />
+
         <div className="form-row">
           <div className="date-picker-wrapper">
             <label htmlFor="date-picker">Select date</label>
@@ -94,6 +185,7 @@ const RequestFormPage = () => {
             </select>
           </div>
         </div>
+
         {/* Reason of Meet Dropdown */}
         <div className="dropdown-wrapper">
           <label htmlFor="reason">Reason of Meet</label>
@@ -129,12 +221,15 @@ const RequestFormPage = () => {
         <div className="form-actions">
           <button type="submit" className="submit-btn">Submit</button>
           <button type="button" className="cancel-btn" onClick={() => {
-            setSubject('');
+            setProfValue('');
+            setSubjectValue('');
             setComments('');
             setSelectedDate(null);
             setSelectedTime('');
             setReason('');
             setYear('');
+            setProfFieldType('name');
+            setSubjectFieldType('name');
           }}>Cancel</button>
         </div>
         {submitted && (
